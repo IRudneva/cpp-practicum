@@ -1,4 +1,4 @@
-#include <algorithm>
+п»ї#include <algorithm>
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -15,24 +15,24 @@ void PrintRange(It range_begin, It range_end) {
 
 template <typename RandomIt>
 void MergeSort(RandomIt range_begin, RandomIt range_end) {
-    // 1. Если диапазон содержит меньше 2 элементов, выходим из функции
+    // 1. Р•СЃР»Рё РґРёР°РїР°Р·РѕРЅ СЃРѕРґРµСЂР¶РёС‚ РјРµРЅСЊС€Рµ 2 СЌР»РµРјРµРЅС‚РѕРІ, РІС‹С…РѕРґРёРј РёР· С„СѓРЅРєС†РёРё
     int range_length = range_end - range_begin;
     if (range_length < 2) {
         return;
     }
 
-    // 2. Создаем вектор, содержащий все элементы текущего диапазона
+    // 2. РЎРѕР·РґР°РµРј РІРµРєС‚РѕСЂ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РІСЃРµ СЌР»РµРјРµРЅС‚С‹ С‚РµРєСѓС‰РµРіРѕ РґРёР°РїР°Р·РѕРЅР°
     vector<typename RandomIt::value_type> elements(range_begin, range_end);
 
-    // 3. Разбиваем вектор на две равные части
+    // 3. Р Р°Р·Р±РёРІР°РµРј РІРµРєС‚РѕСЂ РЅР° РґРІРµ СЂР°РІРЅС‹Рµ С‡Р°СЃС‚Рё
     auto mid = elements.begin() + range_length / 2;
 
-    // 4. Вызываем функцию MergeSort от каждой половины вектора
+    // 4. Р’С‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ MergeSort РѕС‚ РєР°Р¶РґРѕР№ РїРѕР»РѕРІРёРЅС‹ РІРµРєС‚РѕСЂР°
     MergeSort(elements.begin(), mid);
     MergeSort(mid, elements.end());
 
-    // 5. С помощью алгоритма merge сливаем отсортированные половины
-    // в исходный диапазон
+    // 5. РЎ РїРѕРјРѕС‰СЊСЋ Р°Р»РіРѕСЂРёС‚РјР° merge СЃР»РёРІР°РµРј РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РїРѕР»РѕРІРёРЅС‹
+    // РІ РёСЃС…РѕРґРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ
     // merge -> http://ru.cppreference.com/w/cpp/algorithm/merge
     merge(elements.begin(), mid, mid, elements.end(), range_begin);
 }
@@ -41,20 +41,20 @@ int main() {
     vector<int> test_vector(10);
 
     // iota             -> http://ru.cppreference.com/w/cpp/algorithm/iota
-    // Заполняет диапазон последовательно возрастающими значениями
+    // Р—Р°РїРѕР»РЅСЏРµС‚ РґРёР°РїР°Р·РѕРЅ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ РІРѕР·СЂР°СЃС‚Р°СЋС‰РёРјРё Р·РЅР°С‡РµРЅРёСЏРјРё
     iota(test_vector.begin(), test_vector.end(), 1);
 
     // random_shuffle   -> https://ru.cppreference.com/w/cpp/algorithm/random_shuffle
-    // Перемешивает элементы в случайном порядке
+    // РџРµСЂРµРјРµС€РёРІР°РµС‚ СЌР»РµРјРµРЅС‚С‹ РІ СЃР»СѓС‡Р°Р№РЅРѕРј РїРѕСЂСЏРґРєРµ
     random_shuffle(test_vector.begin(), test_vector.end());
 
-    // Выводим вектор до сортировки
+    // Р’С‹РІРѕРґРёРј РІРµРєС‚РѕСЂ РґРѕ СЃРѕСЂС‚РёСЂРѕРІРєРё
     PrintRange(test_vector.begin(), test_vector.end());
 
-    // Сортируем вектор с помощью сортировки слиянием
+    // РЎРѕСЂС‚РёСЂСѓРµРј РІРµРєС‚РѕСЂ СЃ РїРѕРјРѕС‰СЊСЋ СЃРѕСЂС‚РёСЂРѕРІРєРё СЃР»РёСЏРЅРёРµРј
     MergeSort(test_vector.begin(), test_vector.end());
 
-    // Выводим результат
+    // Р’С‹РІРѕРґРёРј СЂРµР·СѓР»СЊС‚Р°С‚
     PrintRange(test_vector.begin(), test_vector.end());
 
     return 0;
